@@ -88,92 +88,21 @@ App Android (Kotlin) ↔ API REST (Spring Boot) ↔ Base de Datos MySQL
 
 - `moderation_logs`: Logs de moderación (estructura lista)
 
-### Esquema de Reacciones y Comentarios
-
-```sql
--- Tabla de reacciones (likes/dislikes)
-CREATE TABLE reactions (
-    id VARCHAR(36) PRIMARY KEY,
-    user_id VARCHAR(36) NOT NULL,
-    post_id VARCHAR(36) NOT NULL,
-    type ENUM('LIKE', 'DISLIKE') NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY unique_user_post (user_id, post_id)
-);
-
--- Tabla de comentarios
-CREATE TABLE comments (
-    id VARCHAR(36) PRIMARY KEY,
-    post_id VARCHAR(36) NOT NULL,
-    author_id VARCHAR(36) NOT NULL,
-    content TEXT NOT NULL,
-    is_approved BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
-    FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
-);
-```
-
 ### Instalación de la Base de Datos
 
-#### 🚀 Instalación Automática (Recomendada)
+1. **Descargar e instalar XAMPP**
 
-```bash
-# Ejecutar script de inicialización completa
-bash init_local_development.sh
-```
+   - https://www.apachefriends.org/
 
-Este script automáticamente:
+2. **Iniciar servicios**
 
-- ✅ Verifica requisitos (MySQL, Java, Maven)
-- ✅ Crea la base de datos completa **sin tabla notifications** (simplificada)
-- ✅ Configura sistema de recomendaciones con **rating de estrellas**
-- ✅ Configura todas las tablas, vistas y procedimientos
-- ✅ Compila el backend
-- ✅ Verifica que todo esté funcionando
+   - Abrir XAMPP Control Panel
+   - Iniciar **Apache** y **MySQL**
 
-#### 📋 Instalación Manual
-
-1. **Instalar MySQL**:
-
-   ```bash
-   # Ubuntu/Debian
-   sudo apt update
-   sudo apt install mysql-server
-
-   # Windows
-   # Descargar desde: https://dev.mysql.com/downloads/mysql/
-   ```
-
-2. **Configurar MySQL**:
-
-   ```bash
-   sudo mysql_secure_installation
-   ```
-
-3. **Crear la base de datos**:
-
-   ```bash
-   mysql -u root -p < database/uniway_db.sql
-   ```
-
-   El script `uniway_db.sql` incluye:
-
-   - ✅ **Todas las tablas del foro estudiantil** (sin notifications)
-   - ✅ **Sistema completo de recomendaciones** con rating de estrellas
-   - ✅ **Tabla `teacher_recommendation_reactions`** para likes/dislikes
-   - ✅ **Vista `teacher_recommendations_with_reactions`** optimizada
-   - ✅ **6 procedimientos almacenados** para consultas complejas
-   - ✅ **6 triggers de auditoría** automática
-   - ✅ **Índices optimizados** para máximo rendimiento
-   - ✅ **Constraints de validación** (rating 1-5, unique keys)
-
-4. **Configurar usuario** (opcional):
-   ```sql
-   CREATE USER 'uniway_user'@'localhost' IDENTIFIED BY 'tu_password';
-   GRANT ALL PRIVILEGES ON uniway_db.* TO 'uniway_user'@'localhost';
-   FLUSH PRIVILEGES;
+3. **Crear base de datos**
+   - Ir a http://localhost/phpmyadmin
+   - Ir a "Nueva"
+   - Importar archivo: `database/uniway_db.sql`
    ```
 
 ## 🚀 Backend Spring Boot
@@ -189,7 +118,7 @@ Este script automáticamente:
 1. **Clonar el repositorio**:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ocampox/Uniway
    cd uniway
    ```
 
@@ -295,7 +224,6 @@ Este script automáticamente:
 
 1. **Abrir en Android Studio**:
 
-   ```bash
    # Abrir el proyecto en Android Studio
    # File -> Open -> Seleccionar la carpeta del proyecto
    ```
@@ -468,63 +396,17 @@ curl -X POST http://localhost:8080/comments/dev \
 cd backend
 mvn spring-boot:run
 
-# Compilar para producción
-mvn clean package
-
-# Ejecutar JAR en producción
-java -jar target/uniway-backend-0.0.1-SNAPSHOT.jar
-
-# Con perfil específico
-java -jar target/uniway-backend-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
-```
-
-### Android
-
-1. **Compilar en desarrollo**:
-
-   ```bash
-   ./gradlew assembleDebug
-   ```
-
-2. **Generar APK de producción**:
-
-   ```bash
-   ./gradlew assembleRelease
-   ```
-
-3. **Instalar en dispositivo**:
-   ```bash
-   adb install app/build/outputs/apk/debug/app-debug.apk
-   ```
-
-### Docker (Opcional)
-
-```dockerfile
-# Dockerfile para el backend
-FROM openjdk:17-jdk-slim
-COPY target/uniway-backend-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
-```
-
-## 🤝 Contribución
-
-1. Fork el proyecto
-2. Crear rama para feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit cambios (`git commit -am 'Agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crear Pull Request
 
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
-## � Estardo del Proyecto
+## � Estado del Proyecto
 
 ### ✅ Funcionalidades Implementadas
 
 #### 🔐 **Autenticación Completa**
-- [x] **Registro simplificado** (sin campo de teléfono)
+- [x] **Registro simplificado** 
 - [x] **Verificación por email** con códigos de verificación
 - [x] **Inicio de sesión** con JWT
 - [x] **Recuperación de contraseña** funcional
@@ -598,7 +480,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 👥 Autores
 
-- **Desarrollador**: Equipo de Desarrollo UniWay
+- **Estudiantes**: Alejandro Ocampo y Juan David Pérez
 - **Universidad**: Institución Universitaria Pascual Bravo
 - **Versión**: 2.0.0
 - **Última actualización**: Octubre 2025
