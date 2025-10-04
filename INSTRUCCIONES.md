@@ -1,32 +1,26 @@
 # 📋 Instrucciones Completas - UniWay Foro Estudiantil
 
-## 🎯 **Descripción del Proyecto**
-
-UniWay es un foro estudiantil completo con sistema de recomendaciones de profesores. Incluye:
-- **Frontend**: Aplicación Android (Kotlin)
-- **Backend**: API REST con Spring Boot (Java)
-- **Base de Datos**: MySQL
-- **Funcionalidades**: Foro, comentarios, likes, recomendaciones con rating, autenticación JWT
-
----
-
 ## 🛠️ **Requisitos Previos**
 
 ### **Software Necesario:**
 
 1. **Java Development Kit (JDK) 17+**
+
    - Descargar: https://adoptium.net/
    - Verificar: `java -version`
 
 2. **Android Studio**
+
    - Descargar: https://developer.android.com/studio
    - Incluye Android SDK y herramientas
 
 3. **MySQL Server**
+
    - Descargar: https://dev.mysql.com/downloads/mysql/
    - O usar XAMPP: https://www.apachefriends.org/
 
 4. **Maven** (opcional, incluido en la mayoría de IDEs)
+
    - Descargar: https://maven.apache.org/download.cgi
    - Verificar: `mvn -version`
 
@@ -35,6 +29,7 @@ UniWay es un foro estudiantil completo con sistema de recomendaciones de profeso
    - Verificar: `git --version`
 
 ### **Hardware Recomendado:**
+
 - **RAM**: 8GB mínimo, 16GB recomendado
 - **Almacenamiento**: 10GB libres
 - **Procesador**: Intel i5 o AMD Ryzen 5 equivalente
@@ -55,6 +50,7 @@ ls -la
 ```
 
 **Estructura esperada:**
+
 ```
 uniway-foro-estudiantil/
 ├── app/                    # Frontend Android
@@ -70,13 +66,14 @@ uniway-foro-estudiantil/
 
 ## 🗄️ **2. Configurar Base de Datos**
 
-
 ### **XAMPP**
 
 1. **Descargar e instalar XAMPP**
+
    - https://www.apachefriends.org/
 
 2. **Iniciar servicios**
+
    - Abrir XAMPP Control Panel
    - Iniciar **Apache** y **MySQL**
 
@@ -92,10 +89,11 @@ uniway-foro-estudiantil/
 ### **Paso 1: Configurar Propiedades**
 
 1. **Crear archivo de configuración local**
+
    ```bash
    # Navegar al backend
    cd backend/src/main/resources/
-   
+
    # Crear archivo de configuración local
    cp application.yml
    ```
@@ -108,7 +106,7 @@ uniway-foro-estudiantil/
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-   
+
    # JPA/Hibernate
    jpa:
     hibernate:
@@ -119,22 +117,22 @@ uniway-foro-estudiantil/
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     open-in-view: false
-   
+
    # Puerto del servidor
    server.port=8080
-   
+
    # JWT Secret (cambiar por uno seguro)
    jwt.secret=mi_jwt_secret_super_seguro_de_al_menos_32_caracteres
-   
+
    # CORS (permitir frontend)
    cors.allowed.origins=*
-   
+
    # Logs
    logging:
-  level:
+   level:
     com.uniway: DEBUG
     org.springframework.security: DEBUG
-  pattern:
+   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
    ```
 
@@ -156,14 +154,16 @@ mvn spring-boot:run
 ### **Paso 3: Verificar Backend**
 
 1. **Verificar que esté corriendo**
+
    - Abrir: http://localhost:8080
    - Debería mostrar página de error (normal, no hay frontend web)
 
 2. **Probar API**
+
    ```bash
    # Verificar salud del servidor
    curl http://localhost:8080/actuator/health
-   
+
    # O usar navegador: http://localhost:8080/swagger-ui.html
    ```
 
@@ -198,21 +198,23 @@ echo "sdk.dir=C:\\Users\\TuUsuario\\AppData\\Local\\Android\\Sdk" > local.proper
 ### **Paso 4: Configurar Conexión al Backend**
 
 1. **Editar `app/src/main/java/com/universidad/uniway/network/ApiClient.kt`**
+
    ```kotlin
    companion object {
        // Para emulador Android
        private const val BASE_URL = "http://10.0.2.2:8080/"
-       
+
        // Para dispositivo físico (cambiar por tu IP local)
        // private const val BASE_URL = "http://192.168.1.100:8080/"
    }
    ```
 
 2. **Obtener tu IP local (si usas dispositivo físico)**
+
    ```bash
    # Windows
    ipconfig
-   
+
    # macOS/Linux
    ifconfig
    # Buscar tu IP en la red local (ej: 192.168.1.100)
@@ -221,9 +223,11 @@ echo "sdk.dir=C:\\Users\\TuUsuario\\AppData\\Local\\Android\\Sdk" > local.proper
 ### **Paso 5: Compilar y Ejecutar**
 
 1. **Sincronizar proyecto**
+
    - **File → Sync Project with Gradle Files**
 
 2. **Crear AVD (Emulador)**
+
    - **Tools → AVD Manager**
    - **Create Virtual Device**
    - Seleccionar **Pixel 4** o similar
@@ -251,6 +255,7 @@ echo "sdk.dir=C:\\Users\\TuUsuario\\AppData\\Local\\Android\\Sdk" > local.proper
 ### **Paso 2: Probar Funcionalidades**
 
 1. **Foro:**
+
    - Crear post
    - Dar like/dislike
    - Comentar
@@ -283,22 +288,25 @@ SELECT * FROM student_teachers;
 ### **Backend no inicia**
 
 1. **Verificar Java**
+
    ```bash
    java -version
    # Debe ser 17+
    ```
 
 2. **Verificar MySQL**
+
    ```bash
    mysql -u uniway_user -p
    # Debe conectar sin errores
    ```
 
 3. **Verificar puerto**
+
    ```bash
    # Linux/macOS
    lsof -i :8080
-   
+
    # Windows
    netstat -an | findstr :8080
    ```
@@ -306,12 +314,14 @@ SELECT * FROM student_teachers;
 ### **Android no compila**
 
 1. **Limpiar proyecto**
+
    ```bash
    ./gradlew clean
    ./gradlew build
    ```
 
 2. **Verificar SDK**
+
    - **File → Project Structure → SDK Location**
 
 3. **Invalidar caché**
@@ -320,10 +330,12 @@ SELECT * FROM student_teachers;
 ### **App no conecta al backend**
 
 1. **Verificar IP en ApiService.kt**
+
    - Emulador: `10.0.2.2:8080`
    - Dispositivo: Tu IP local
 
 2. **Verificar firewall**
+
    ```bash
    # Permitir puerto 8080
    sudo ufw allow 8080
@@ -338,11 +350,13 @@ SELECT * FROM student_teachers;
 ### **Errores de Base de Datos**
 
 1. **Verificar conexión**
+
    ```bash
    mysql -u uniway_user -p -h localhost
    ```
 
 2. **Recrear base de datos**
+
    ```sql
    DROP DATABASE uniway_db;
    CREATE DATABASE uniway_db CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
@@ -360,6 +374,7 @@ SELECT * FROM student_teachers;
 ### **IDEs Recomendados**
 
 1. **Backend:**
+
    - **IntelliJ IDEA** (recomendado)
    - **Eclipse** con Spring Tools
    - **VS Code** con extensiones Java
@@ -370,28 +385,32 @@ SELECT * FROM student_teachers;
 ### **Extensiones Útiles**
 
 **VS Code:**
+
 - Java Extension Pack
 - Spring Boot Extension Pack
 - Kotlin Language
 
 **IntelliJ IDEA:**
+
 - Spring Boot (incluido)
 - Database Tools (incluido)
-
 
 ## 📚 **Recursos Adicionales**
 
 ### **Documentación**
+
 - **Spring Boot**: https://spring.io/projects/spring-boot
 - **Android Development**: https://developer.android.com/
 - **MySQL**: https://dev.mysql.com/doc/
 
 ### **Herramientas de Prueba**
+
 - **Postman**: Para probar APIs
 - **MySQL Workbench**: Para gestionar BD
 - **Android Device Monitor**: Para debugging
 
 ### **Comunidad**
+
 - **Stack Overflow**: Para preguntas específicas
 - **GitHub Issues**: Para reportar bugs del proyecto
 
@@ -400,6 +419,7 @@ SELECT * FROM student_teachers;
 ## ✅ **Checklist de Verificación**
 
 ### **Backend ✓**
+
 - [ ] Java 17+ instalado
 - [ ] MySQL corriendo
 - [ ] Base de datos creada e importada
@@ -407,6 +427,7 @@ SELECT * FROM student_teachers;
 - [ ] API responde en http://localhost:8080
 
 ### **Frontend ✓**
+
 - [ ] Android Studio instalado
 - [ ] SDK configurado
 - [ ] Proyecto sincroniza sin errores
@@ -414,6 +435,7 @@ SELECT * FROM student_teachers;
 - [ ] App instala y abre correctamente
 
 ### **Integración ✓**
+
 - [ ] App conecta al backend
 - [ ] Registro de usuario funciona
 - [ ] Login funciona
@@ -428,6 +450,7 @@ SELECT * FROM student_teachers;
 Si llegaste hasta aquí y todo funciona, ¡tienes UniWay corriendo completamente!
 
 ### **Próximos Pasos:**
+
 1. **Explorar el código** para entender la arquitectura
 2. **Agregar nuevas funcionalidades**
 3. **Personalizar el diseño**
