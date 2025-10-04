@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Logo UniWay simplificado para el icono -->
+    <!-- Círculo base blanco -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,20C70.5,20 84,33.5 84,50C84,66.5 70.5,80 54,80C37.5,80 24,66.5 24,50C24,33.5 37.5,20 54,20Z" />
+    
+    <!-- Texto "U" estilizado -->
+    <path
+        android:fillColor="#083B60"
+        android:pathData="M42,35L42,55C42,61 46,65 52,65L56,65C62,65 66,61 66,55L66,35L62,35L62,55C62,58 59,61 56,61L52,61C49,61 46,58 46,55L46,35L42,35Z" />
+    
+    <!-- Punto decorativo -->
+    <path
+        android:fillColor="#083B60"
+        android:pathData="M54,66C55.1,66 56,66.9 56,68C56,69.1 55.1,70 54,70C52.9,70 52,69.1 52,68C52,66.9 52.9,66 54,66Z" />
+        
+</vector>

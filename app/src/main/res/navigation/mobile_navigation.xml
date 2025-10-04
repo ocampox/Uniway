@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_login">
+
+    <fragment
+        android:id="@+id/nav_forum"
+        android:name="com.universidad.uniway.ui.forum.ForumFragment"
+        android:label="@string/menu_forum"
+        tools:layout="@layout/fragment_forum" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.universidad.uniway.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.universidad.uniway.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.universidad.uniway.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <!-- Fragmentos de autenticación -->
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.universidad.uniway.ui.login.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@+id/nav_register" />
+        <action
+            android:id="@+id/action_login_to_forum"
+            app:destination="@+id/nav_forum" />
+        <action
+            android:id="@+id/action_login_to_forgot_password"
+            app:destination="@+id/nav_forgot_password" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_register"
+        android:name="com.universidad.uniway.ui.register.RegisterFragment"
+        android:label="@string/title_register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@+id/nav_login" />
+        <action
+            android:id="@+id/action_register_to_emailVerification"
+            app:destination="@+id/nav_email_verification" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_email_verification"
+        android:name="com.universidad.uniway.ui.register.EmailVerificationFragment"
+        android:label="Verificación de Email"
+        tools:layout="@layout/fragment_email_verification">
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_emailVerification_to_login"
+            app:destination="@+id/nav_login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_forgot_password"
+        android:name="com.universidad.uniway.ui.forgotpassword.ForgotPasswordFragment"
+        android:label="Recuperar Contraseña"
+        tools:layout="@layout/fragment_forgot_password">
+        <action
+            android:id="@+id/action_forgot_password_to_reset_password"
+            app:destination="@+id/nav_reset_password" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_reset_password"
+        android:name="com.universidad.uniway.ui.resetpassword.ResetPasswordFragment"
+        android:label="Nueva Contraseña"
+        tools:layout="@layout/fragment_reset_password">
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_reset_password_to_login"
+            app:destination="@+id/nav_login" />
+    </fragment>
+</navigation>

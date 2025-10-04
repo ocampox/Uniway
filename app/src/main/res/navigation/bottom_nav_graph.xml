@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@+id/nav_forum">
+
+    <fragment
+        android:id="@+id/nav_forum"
+        android:name="com.universidad.uniway.ui.forum.ForumFragment"
+        android:label="@string/menu_forum"
+        tools:layout="@layout/fragment_forum">
+        <action
+            android:id="@+id/action_forum_to_comments"
+            app:destination="@+id/nav_comments" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.universidad.uniway.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_comments"
+        android:name="com.universidad.uniway.ui.comments.CommentsFragment"
+        android:label="@string/comments"
+        tools:layout="@layout/fragment_comments" />
+
+    <fragment
+        android:id="@+id/nav_teacher_detail"
+        android:name="com.universidad.uniway.ui.teacher.AllRecommendationsFragment"
+        android:label="Profesores"
+        tools:layout="@layout/fragment_all_recommendations">
+        <action
+            android:id="@+id/action_all_recommendations_to_add_teacher"
+            app:destination="@+id/nav_add_teacher" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_add_teacher"
+        android:name="com.universidad.uniway.ui.addteacher.AddTeacherFragment"
+        android:label="Agregar Profesor"
+        tools:layout="@layout/fragment_add_teacher" />
+
+    <fragment
+        android:id="@+id/nav_teacher_profile"
+        android:name="com.universidad.uniway.ui.teacher.TeacherDetailFragment"
+        android:label="Perfil del Profesor"
+        tools:layout="@layout/fragment_teacher_detail">
+        <argument
+            android:name="teacher"
+            app:argType="com.universidad.uniway.data.Teacher" />
+    </fragment>
+
+    <!-- TeacherListFragment (legacy) -->
+    <fragment
+        android:id="@+id/nav_teacher_list"
+        android:name="com.universidad.uniway.ui.teacherlist.TeacherListFragment"
+        android:label="Mis Profesores"
+        tools:layout="@layout/fragment_teacher_list">
+        <action
+            android:id="@+id/action_teacher_list_to_add_teacher"
+            app:destination="@+id/nav_add_teacher" />
+        <action
+            android:id="@+id/action_teacher_list_to_teacher_profile"
+            app:destination="@+id/nav_teacher_profile" />
+    </fragment>
+
+    <!-- Sistema de Recomendaciones de Profesores -->
+    <fragment
+        android:id="@+id/nav_teacher_main"
+        android:name="com.universidad.uniway.ui.teacher.TeacherMainFragment"
+        android:label="Recomendaciones de Profesores"
+        tools:layout="@layout/fragment_teacher_main">
+        <action
+            android:id="@+id/action_teacher_main_to_add_teacher"
+            app:destination="@+id/nav_add_teacher" />
+        <action
+            android:id="@+id/action_teacher_main_to_my_recommendations"
+            app:destination="@+id/nav_my_recommendations" />
+        <action
+            android:id="@+id/action_teacher_main_to_all_recommendations"
+            app:destination="@+id/nav_all_recommendations" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_all_recommendations"
+        android:name="com.universidad.uniway.ui.teacher.AllRecommendationsFragment"
+        android:label="Todas las Recomendaciones"
+        tools:layout="@layout/fragment_all_recommendations">
+        <action
+            android:id="@+id/action_all_recommendations_to_add_teacher"
+            app:destination="@+id/nav_add_teacher" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_my_recommendations"
+        android:name="com.universidad.uniway.ui.teacher.MyRecommendationsFragment"
+        android:label="Mis Recomendaciones"
+        tools:layout="@layout/fragment_my_recommendations">
+        <action
+            android:id="@+id/action_my_recommendations_to_add_teacher"
+            app:destination="@+id/nav_add_teacher" />
+    </fragment>
+
+</navigation>

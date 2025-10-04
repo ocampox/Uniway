@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.register.EmailVerificationFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
+
+        <!-- Ícono de verificación -->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/ic_email_verification"
+            android:contentDescription="Verificación de email"
+            app:tint="@color/primary" />
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verifica tu correo"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Subtítulo -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hemos enviado un código de verificación a tu correo institucional"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:gravity="center"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Email mostrado -->
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="usuario@pascualbravo.edu.co"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Campo de código de verificación -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:startIconDrawable="@android:drawable/ic_lock_lock"
+            app:helperText="Ingresa el código de 6 dígitos"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_verification_code">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextVerificationCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Código de verificación"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="6"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botón de verificar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verificar código"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/button_primary"
+            android:textColor="@color/button_primary_text"
+            android:fontFamily="@font/ubuntu_font_family"
+            app:cornerRadius="8dp" />
+
+        <!-- Botón de reenviar código -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonResendCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reenviar código"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@color/primary"
+            android:fontFamily="@font/ubuntu_font_family"
+            app:cornerRadius="8dp"
+            style="@style/Widget.Material3.Button.TextButton" />
+
+        <!-- Información de expiración -->
+        <TextView
+            android:id="@+id/textViewExpiration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="El código expira en 10 minutos"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Enlace para volver al registro -->
+        <TextView
+            android:id="@+id/textViewBackToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Cambiaste de opinión? Volver al registro"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>

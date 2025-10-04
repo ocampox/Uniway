@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Título -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear Nueva Publicación"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:fontFamily="@font/ubuntu_font_family"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Tipo de Publicación -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo de Publicación"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/ubuntu_font_family"
+        android:layout_marginBottom="8dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupPostType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <RadioButton
+            android:id="@+id/radioGeneral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="General"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioButton
+            android:id="@+id/radioNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noticia"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioButton
+            android:id="@+id/radioAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alerta"
+            android:textSize="14sp" />
+
+    </RadioGroup>
+
+    <!-- Prioridad (solo para noticias y alertas) -->
+    <LinearLayout
+        android:id="@+id/layoutPriority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prioridad"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/radioNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Normal"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <RadioButton
+                android:id="@+id/radioHigh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alta"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <RadioButton
+                android:id="@+id/radioUrgent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Urgente"
+                android:textSize="14sp" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!-- Contenido -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contenido"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/ubuntu_font_family"
+        android:layout_marginBottom="8dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:helperText="Escribe tu publicación aquí">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="¿Qué quieres compartir?"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:minLines="3" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Botones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:textSize="14sp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/button_secondary"
+            android:textColor="@color/button_secondary_text"
+            android:fontFamily="@font/ubuntu_font_family"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publicar"
+            android:textSize="14sp"
+            android:backgroundTint="@color/button_primary"
+            android:textColor="@color/button_primary_text"
+            android:fontFamily="@font/ubuntu_font_family"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+

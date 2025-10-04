@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    tools:cardCornerRadius="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header del post -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <!-- Avatar del usuario -->
+            <ImageView
+                android:id="@+id/imageViewAvatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_launcher_foreground"
+                android:background="@drawable/circle_background"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/textViewAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre del Autor"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/textViewTimestamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hace 2 horas"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+
+            <!-- Indicador de tipo de post -->
+            <TextView
+                android:id="@+id/textViewPostType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOTICIA"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@drawable/post_type_background"
+                android:padding="4dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- Contenido del post -->
+        <TextView
+            android:id="@+id/textViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contenido de la publicación aquí..."
+            android:textSize="14sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Acciones del post -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Botón de like -->
+            <LinearLayout
+                android:id="@+id/layoutLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/btn_star_big_on"
+                    android:tint="@color/primary" />
+
+                <TextView
+                    android:id="@+id/textViewLikeCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+            <!-- Botón de dislike -->
+            <LinearLayout
+                android:id="@+id/layoutDislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_marginStart="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:tint="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/textViewDislikeCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+            <!-- Botón de comentar -->
+            <LinearLayout
+                android:id="@+id/layoutComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_marginStart="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:tint="@color/primary" />
+
+                <TextView
+                    android:id="@+id/textViewCommentCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+
+
+            <!-- Botones de administración (solo para admin/seguridad) -->
+            <LinearLayout
+                android:id="@+id/layoutAdminActions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageViewEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:tint="@color/primary"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:padding="4dp" />
+
+                <ImageView
+                    android:id="@+id/imageViewDelete"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:tint="@android:color/holo_red_dark"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:padding="4dp"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

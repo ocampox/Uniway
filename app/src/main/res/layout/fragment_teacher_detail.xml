@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textTeacherName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Nombre del profesor" />
+
+        <TextView
+            android:id="@+id/textTeacherEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email@pascualbravo.edu.co"
+            android:drawablePadding="8dp"
+            android:paddingTop="4dp" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@android:style/Widget.Material.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+            android:isIndicator="false"
+            android:paddingTop="8dp" />
+
+        <TextView
+            android:id="@+id/textSubjectsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Materias de este semestre"
+            android:textStyle="bold"
+            android:paddingTop="12dp" />
+
+        <LinearLayout
+            android:id="@+id/chipsSubjects"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="6dp" />
+
+        <TextView
+            android:id="@+id/textAvailability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Talleres/Asesorías"
+            android:paddingTop="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comentarios destacados"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerReviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:paddingTop="8dp" />
+
+        <EditText
+            android:id="@+id/editReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Escribe tu comentario"
+            android:paddingTop="12dp" />
+
+        <Button
+            android:id="@+id/buttonSendReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Responder"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+

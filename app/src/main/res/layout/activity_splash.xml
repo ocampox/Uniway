@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+
+    <!-- Logo principal -->
+    <LinearLayout
+        android:id="@+id/logoContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Logo UniWay (Imagen) -->
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="404dp"
+            android:layout_height="200dp"
+            android:contentDescription="Logo UniWay"
+            android:scaleType="centerInside"
+            android:src="@drawable/logo_uniway" />
+
+        <!-- Eslogan -->
+        <TextView
+            android:id="@+id/textViewSlogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guiando tus pasos..."
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:layout_marginTop="24dp"
+            android:alpha="0.9"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+    </LinearLayout>
+
+    <!-- Indicador de carga -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:indeterminateTint="@android:color/white"
+        android:visibility="gone" />
+
+    <!-- Versión de la app -->
+    <TextView
+        android:id="@+id/textViewVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
+        android:text="v1.0.0"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        android:alpha="0.6" />
+
+</RelativeLayout>

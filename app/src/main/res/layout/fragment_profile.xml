@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header con saludo -->
+        <TextView
+            android:id="@+id/textViewWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¡Bienvenido!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Información Personal -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Información Personal"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Foto de perfil -->
+                <ImageView
+                    android:id="@+id/imageViewProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/ic_launcher_foreground"
+                    android:background="@drawable/circle_background"
+                    android:scaleType="centerCrop" />
+
+                <!-- Información del usuario -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Nombre completo"
+                    app:startIconDrawable="@android:drawable/ic_menu_myplaces">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextFullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Correo electrónico"
+                    app:startIconDrawable="@android:drawable/ic_dialog_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Teléfono"
+                    app:startIconDrawable="@android:drawable/ic_menu_call">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Dirección"
+                    app:startIconDrawable="@android:drawable/ic_menu_mylocation">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Carnet Estudiantil -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Carnet Estudiantil"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Diseño del carnet -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/student_card_background"
+                    android:padding="16dp">
+
+                    <!-- Header del carnet -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/ic_launcher_foreground"
+                            android:background="@drawable/circle_background"
+                            android:scaleType="centerCrop" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="INSTITUCIÓN UNIVERSITARIA"
+                                android:textSize="10sp"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="PASCUAL BRAVO"
+                                android:textSize="12sp"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Acreditada en Alta Calidad"
+                                android:textSize="8sp"
+                                android:textColor="@android:color/white" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Información del estudiante -->
+                    <TextView
+                        android:id="@+id/textViewStudentName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre del Estudiante"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_white"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/textViewStudentId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID: TL 1043650044"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_white"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/textViewProgram"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Programa Académico"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botón para adjuntar imagen del carnet -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAttachCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adjuntar Imagen del Carnet"
+            android:textSize="16sp"
+            android:backgroundTint="@color/button_secondary"
+            android:textColor="@color/button_secondary_text"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:layout_marginBottom="16dp"
+            app:cornerRadius="8dp"
+            app:icon="@android:drawable/ic_menu_camera"
+            app:iconGravity="textStart" />
+
+        <!-- Botón de actualizar perfil -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar Perfil"
+            android:textSize="16sp"
+            android:backgroundTint="@color/button_primary"
+            android:textColor="@color/button_primary_text"
+            android:fontFamily="@font/ubuntu_font_family"
+            app:cornerRadius="8dp" />
+
+        <!-- Botón de cerrar sesión -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"
+            android:textSize="16sp"
+            android:backgroundTint="@color/button_secondary"
+            android:textColor="@color/button_secondary_text"
+            android:fontFamily="@font/ubuntu_font_family"
+            android:layout_marginTop="16dp"
+            app:cornerRadius="8dp"
+            app:icon="@android:drawable/ic_menu_close_clear_cancel"
+            app:iconGravity="textStart" />
+
+    </LinearLayout>
+
+</ScrollView>

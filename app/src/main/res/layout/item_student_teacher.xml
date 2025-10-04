@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/text_hint">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header con nombre del profesor -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/textTeacherName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nombre del Profesor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/textRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⭐ 4.5"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:background="@drawable/rating_display_background"
+                android:padding="4dp" />
+
+        </LinearLayout>
+
+        <!-- Recomendado por -->
+        <TextView
+            android:id="@+id/textRecommendedBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recomendado por: Estudiante"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="8dp"
+            android:textStyle="italic" />
+
+        <!-- Materia -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📚 Materia:"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textSubject"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Estructura de Datos"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- Semestre y Año -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅 Período:"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textSemesterYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2024-2 (2024)"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- Referencia/Recomendación -->
+        <TextView
+            android:id="@+id/textReference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Excelente profesor, muy claro en sus explicaciones..."
+            android:textSize="14sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/reference_background"
+            android:padding="12dp"
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+        <!-- Interacciones (Likes/Dislikes) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <!-- Like -->
+            <LinearLayout
+                android:id="@+id/layoutLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/imageViewLike"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_thumb_up"
+                    app:tint="@color/text_secondary" />
+
+                <TextView
+                    android:id="@+id/textViewLikeCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+            <!-- Dislike -->
+            <LinearLayout
+                android:id="@+id/layoutDislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:layout_marginEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/imageViewDislike"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_thumb_down"
+                    app:tint="@color/text_secondary" />
+
+                <TextView
+                    android:id="@+id/textViewDislikeCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+            <!-- Spacer -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <!-- Fecha de publicación -->
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hace 2 días"
+                android:textSize="12sp"
+                android:textColor="@color/text_hint" />
+
+        </LinearLayout>
+
+        <!-- Botones de acción -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eliminar"
+                android:textSize="12sp"
+                android:backgroundTint="@color/error"
+                android:textColor="@android:color/white"
+                app:cornerRadius="8dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
