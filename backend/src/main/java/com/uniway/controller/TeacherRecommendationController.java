@@ -29,8 +29,19 @@ public class TeacherRecommendationController {
             @RequestParam(required = false) String userId,
             @RequestParam(required = false) String subject) {
         
-        List<TeacherRecommendationDto> recommendations = recommendationService.getAllRecommendationsWithReactions(userId, subject);
-        return ResponseEntity.ok(recommendations);
+        System.out.println("=== DEBUG: TeacherRecommendationController.getAllRecommendations ===");
+        System.out.println("User ID: " + userId);
+        System.out.println("Subject: " + subject);
+        
+        try {
+            List<TeacherRecommendationDto> recommendations = recommendationService.getAllRecommendationsWithReactions(userId, subject);
+            System.out.println("Recomendaciones obtenidas: " + recommendations.size());
+            return ResponseEntity.ok(recommendations);
+        } catch (Exception e) {
+            System.err.println("ERROR en controlador: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(500).build();
+        }
     }
 
     @GetMapping("/user/{userId}")

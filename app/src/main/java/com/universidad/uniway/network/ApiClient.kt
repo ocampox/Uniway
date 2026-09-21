@@ -35,7 +35,7 @@ object ApiClient {
      * - Para dispositivo físico: "http://TU_IP_LOCAL:8080/"
      * - Para producción: "https://tu-servidor.com/api/"
      */
-    private const val BASE_URL = "http://10.0.2.2:8080/"
+    private const val BASE_URL = "http://192.168.1.3:8080/"  // IP local para dispositivo físico
     
     // ==================== CONFIGURACIÓN DE LOGGING ====================
     

@@ -104,7 +104,7 @@ uniway-foro-estudiantil/
    datasource:
     url: jdbc:mysql://localhost:3306/uniway_db
     username: root
-    password: 123456
+    password: # contraseña_mySQL
     driver-class-name: com.mysql.cj.jdbc.Driver
 
    # JPA/Hibernate

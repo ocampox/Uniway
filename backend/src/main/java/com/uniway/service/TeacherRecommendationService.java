@@ -38,17 +38,46 @@ public class TeacherRecommendationService {
      * Obtiene todas las recomendaciones con sus reacciones
      */
     public List<TeacherRecommendationDto> getAllRecommendationsWithReactions(String currentUserId, String subjectFilter) {
+        System.out.println("=== DEBUG: getAllRecommendationsWithReactions ===");
+        System.out.println("Current User ID: " + currentUserId);
+        System.out.println("Subject Filter: " + subjectFilter);
+        
         List<StudentTeacher> recommendations;
         
-        if (subjectFilter != null && !subjectFilter.trim().isEmpty()) {
-            recommendations = studentTeacherRepository.findBySubjectAndActiveTrue(subjectFilter);
-        } else {
-            recommendations = studentTeacherRepository.findByActiveTrueOrderByCreatedAtDesc();
+        try {
+            if (subjectFilter != null && !subjectFilter.trim().isEmpty()) {
+                System.out.println("Buscando por materia: " + subjectFilter);
+                recommendations = studentTeacherRepository.findBySubjectAndActiveTrue(subjectFilter);
+            } else {
+                System.out.println("Buscando todas las recomendaciones activas...");
+                recommendations = studentTeacherRepository.findByActiveTrueOrderByCreatedAtDesc();
+            }
+            
+            System.out.println("Recomendaciones encontradas: " + recommendations.size());
+            
+            // Log de cada recomendación encontrada
+            for (int i = 0; i < recommendations.size(); i++) {
+                StudentTeacher rec = recommendations.get(i);
+                System.out.println("Recomendación " + (i+1) + ":");
+                System.out.println("  ID: " + rec.getId());
+                System.out.println("  Profesor: " + rec.getTeacherName());
+                System.out.println("  Materia: " + rec.getSubject());
+                System.out.println("  Estudiante: " + (rec.getStudent() != null ? rec.getStudent().getFullName() : "NULL"));
+                System.out.println("  Activa: " + rec.getIsActive());
+            }
+            
+            List<TeacherRecommendationDto> result = recommendations.stream()
+                    .map(rec -> convertToDto(rec, currentUserId))
+                    .collect(Collectors.toList());
+                    
+            System.out.println("DTOs convertidos: " + result.size());
+            return result;
+            
+        } catch (Exception e) {
+            System.err.println("ERROR en getAllRecommendationsWithReactions: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener recomendaciones: " + e.getMessage());
         }
-
-        return recommendations.stream()
-                .map(rec -> convertToDto(rec, currentUserId))
-                .collect(Collectors.toList());
     }
 
     /**

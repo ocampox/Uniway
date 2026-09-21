@@ -18,11 +18,7 @@ public class SecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/posts/**").permitAll()    // Permitir todos los endpoints de posts
-                .requestMatchers("/users/**").permitAll()    // Permitir todos los endpoints de usuarios
-                .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
-                .anyRequest().permitAll()  // Temporalmente permitir todo para desarrollo
+                .anyRequest().permitAll()  // PERMITIR TODO - Configuración de desarrollo
             );
         return http.build();
     }

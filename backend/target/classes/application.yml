@@ -4,13 +4,14 @@ server:
 spring:
   application:
     name: uniway-backend
-  
+
   datasource:
     url: jdbc:mysql://localhost:3306/uniway_db
     username: root
-    password: 123456
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
-  
+
+  # Esto hará que Hibernate actualice automáticamente el esquema
   jpa:
     hibernate:
       ddl-auto: update
@@ -21,14 +22,12 @@ spring:
         format_sql: true
     open-in-view: false
 
-    # Esto hará que Hibernate actualice automáticamente el esquema
-  
   # Configuración de email
   mail:
     host: smtp.gmail.com
     port: 587
-    username: pruebanueva123456.123@gmail.com  #${MAIL_USERNAME:}
-    password: umekocwbkcdalbjo  #${MAIL_PASSWORD:}
+    username: pruebanueva123456.123@gmail.com #${MAIL_USERNAME:}
+    password: umekocwbkcdalbjo #${MAIL_PASSWORD:}
     properties:
       mail:
         smtp:
@@ -38,7 +37,6 @@ spring:
           ssl:
             trust: smtp.gmail.com
 
-  
   security:
     user:
       name: admin
@@ -69,6 +67,3 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     operationsSorter: method
-
-
-
