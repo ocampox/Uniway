@@ -1,0 +1,79 @@
+UNIWAY ADVANCED SECURITY TEST RESULTS
+==================================================
+Test Date: 2025-11-04 05:58:57.943997
+Target: http://192.168.1.4:8080
+==================================================
+
+[2025-11-04 05:58:52] [INFO] 🚀 Iniciando pruebas avanzadas de seguridad...
+[2025-11-04 05:58:52] [INFO] 📡 1. VERIFICANDO DISPONIBILIDAD DEL SERVIDOR
+[2025-11-04 05:58:52] [SUCCESS] Servidor disponible y respondiendo
+[2025-11-04 05:58:52] [INFO] 🔐 2. PRUEBAS DE VULNERABILIDADES JWT
+[2025-11-04 05:58:52] [INFO] 2.1 Probando ataque 'None Algorithm' en JWT...
+[2025-11-04 05:58:53] [CRITICAL] VULNERABILIDAD CRÍTICA: JWT acepta algoritmo 'none'
+[2025-11-04 05:58:53] [INFO] 2.2 Simulando ataque de fuerza bruta a secreto JWT...
+[2025-11-04 05:58:53] [WARNING] Secreto débil detectado en simulación: secret
+[2025-11-04 05:58:53] [WARNING] Secreto débil detectado en simulación: 123456
+[2025-11-04 05:58:53] [WARNING] Secreto débil detectado en simulación: password
+[2025-11-04 05:58:53] [WARNING] Secreto débil detectado en simulación: uniway
+[2025-11-04 05:58:53] [WARNING] Secreto débil detectado en simulación: admin
+[2025-11-04 05:58:53] [INFO] Simulación de fuerza bruta JWT completada
+[2025-11-04 05:58:53] [INFO] ⏱️ 3. PRUEBAS DE TIMING ATTACKS
+[2025-11-04 05:58:53] [INFO] 3.1 Analizando tiempos de respuesta en login...
+[2025-11-04 05:58:55] [SUCCESS] Tiempos de respuesta consistentes - protegido contra timing attacks
+[2025-11-04 05:58:55] [INFO] 💉 4. PRUEBAS AVANZADAS DE INYECCIÓN SQL
+[2025-11-04 05:58:55] [INFO] 4.1 Probando payload: ' OR '1'='1' --...
+[2025-11-04 05:58:55] [SUCCESS] Payload rechazado correctamente
+[2025-11-04 05:58:55] [INFO] 4.1 Probando payload: ' UNION SELECT NULL,...
+[2025-11-04 05:58:55] [SUCCESS] Payload rechazado correctamente
+[2025-11-04 05:58:55] [INFO] 4.1 Probando payload: '; DROP TABLE users;...
+[2025-11-04 05:58:55] [SUCCESS] Payload rechazado correctamente
+[2025-11-04 05:58:55] [INFO] 4.1 Probando payload: ' OR 1=1 LIMIT 1 OFF...
+[2025-11-04 05:58:55] [SUCCESS] Payload rechazado correctamente
+[2025-11-04 05:58:55] [INFO] 4.1 Probando payload: ' AND (SELECT COUNT(...
+[2025-11-04 05:58:55] [SUCCESS] Payload rechazado correctamente
+[2025-11-04 05:58:55] [INFO] 4.1 Probando payload: ' OR SLEEP(5) --...
+[2025-11-04 05:58:55] [SUCCESS] Payload rechazado correctamente
+[2025-11-04 05:58:55] [INFO] 4.1 Probando payload: ' OR pg_sleep(5) --...
+[2025-11-04 05:58:55] [SUCCESS] Payload rechazado correctamente
+[2025-11-04 05:58:55] [INFO] 🕷️ 5. PRUEBAS AVANZADAS DE XSS
+[2025-11-04 05:58:55] [INFO] 5.1 Probando XSS payload: <script>alert('XSS')</script>...
+[2025-11-04 05:58:55] [SUCCESS] XSS correctamente filtrado
+[2025-11-04 05:58:55] [INFO] 5.1 Probando XSS payload: <img src=x onerror=alert('XSS'...
+[2025-11-04 05:58:55] [SUCCESS] XSS correctamente filtrado
+[2025-11-04 05:58:55] [INFO] 5.1 Probando XSS payload: javascript:alert('XSS')...
+[2025-11-04 05:58:55] [SUCCESS] XSS correctamente filtrado
+[2025-11-04 05:58:55] [INFO] 5.1 Probando XSS payload: <svg onload=alert('XSS')>...
+[2025-11-04 05:58:55] [SUCCESS] XSS correctamente filtrado
+[2025-11-04 05:58:55] [INFO] 5.1 Probando XSS payload: ';alert('XSS');//...
+[2025-11-04 05:58:55] [SUCCESS] XSS correctamente filtrado
+[2025-11-04 05:58:55] [INFO] 5.1 Probando XSS payload: <iframe src=javascript:alert('...
+[2025-11-04 05:58:55] [SUCCESS] XSS correctamente filtrado
+[2025-11-04 05:58:55] [INFO] 5.1 Probando XSS payload: <body onload=alert('XSS')>...
+[2025-11-04 05:58:55] [SUCCESS] XSS correctamente filtrado
+[2025-11-04 05:58:55] [INFO] 5.1 Probando XSS payload: <<SCRIPT>alert('XSS')//<</SCRI...
+[2025-11-04 05:58:55] [SUCCESS] XSS correctamente filtrado
+[2025-11-04 05:58:55] [INFO] 🛡️ 6. PRUEBAS DE PROTECCIÓN CSRF
+[2025-11-04 05:58:55] [INFO] 6.1 Verificando protección contra CSRF...
+[2025-11-04 05:58:55] [INFO] Respuesta inesperada a CSRF: 400
+[2025-11-04 05:58:55] [INFO] ⚡ 7. PRUEBAS AVANZADAS DE RATE LIMITING
+[2025-11-04 05:58:55] [INFO] 7.1 Probando rate limiting con múltiples hilos...
+[2025-11-04 05:58:55] [WARNING] No se detectó rate limiting - considerar implementar
+[2025-11-04 05:58:55] [INFO] 📄 8. PRUEBAS DE DIVULGACIÓN DE INFORMACIÓN
+[2025-11-04 05:58:55] [INFO] 8.1 Verificando endpoint sensible: /actuator/health
+[2025-11-04 05:58:55] [SUCCESS] Endpoint /actuator/health correctamente protegido
+[2025-11-04 05:58:55] [INFO] 8.1 Verificando endpoint sensible: /actuator/info
+[2025-11-04 05:58:55] [SUCCESS] Endpoint /actuator/info correctamente protegido
+[2025-11-04 05:58:55] [INFO] 8.1 Verificando endpoint sensible: /actuator/env
+[2025-11-04 05:58:55] [SUCCESS] Endpoint /actuator/env correctamente protegido
+[2025-11-04 05:58:55] [INFO] 8.1 Verificando endpoint sensible: /swagger-ui.html
+[2025-11-04 05:58:56] [WARNING] Endpoint /swagger-ui.html accesible pero sin información crítica
+[2025-11-04 05:58:56] [INFO] 8.1 Verificando endpoint sensible: /api-docs
+[2025-11-04 05:58:57] [CRITICAL] VULNERABILIDAD: Información sensible en /api-docs
+[2025-11-04 05:58:57] [INFO] 8.1 Verificando endpoint sensible: /h2-console
+[2025-11-04 05:58:57] [SUCCESS] Endpoint /h2-console correctamente protegido
+[2025-11-04 05:58:57] [INFO] 8.1 Verificando endpoint sensible: /.env
+[2025-11-04 05:58:57] [SUCCESS] Endpoint /.env correctamente protegido
+[2025-11-04 05:58:57] [INFO] 8.1 Verificando endpoint sensible: /config
+[2025-11-04 05:58:57] [SUCCESS] Endpoint /config correctamente protegido
+[2025-11-04 05:58:57] [INFO] 8.1 Verificando endpoint sensible: /admin
+[2025-11-04 05:58:57] [SUCCESS] Endpoint /admin correctamente protegido

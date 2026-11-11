@@ -1,0 +1,47 @@
+[0;34m[2025-11-04 05:59:38][0m 🚀 Iniciando pruebas de seguridad para UniWay...
+[0;34m[2025-11-04 05:59:38][0m 📡 1. PRUEBAS DE CONECTIVIDAD
+[0;34m[2025-11-04 05:59:38][0m 1.1 Verificando disponibilidad del servidor...
+[0;32m[✓ PASS][0m Servidor está corriendo (HTTP 404)
+[0;34m[2025-11-04 05:59:39][0m 1.2 Probando endpoint: /posts
+[0;32m[✓ PASS][0m Endpoint /posts responde correctamente (HTTP 200)
+[0;34m[2025-11-04 05:59:40][0m 1.2 Probando endpoint: /auth/login
+[1;33m[⚠ WARNING][0m Endpoint /auth/login respuesta inesperada (HTTP 405)
+[0;34m[2025-11-04 05:59:41][0m 1.2 Probando endpoint: /teacher-recommendations
+[0;32m[✓ PASS][0m Endpoint /teacher-recommendations responde correctamente (HTTP 200)
+[0;34m[2025-11-04 05:59:41][0m 1.2 Probando endpoint: /users/profile
+[1;33m[⚠ WARNING][0m Endpoint /users/profile respuesta inesperada (HTTP 400)
+[0;34m[2025-11-04 05:59:42][0m 🔐 2. PRUEBAS DE AUTENTICACIÓN
+[0;31m[✗ FAIL][0m VULNERABILIDAD: Endpoint /users/profile accesible sin autenticación (HTTP 400)
+[0;34m[2025-11-04 05:59:43][0m 2.2 Probando login con credenciales inválidas...
+[0;32m[✓ PASS][0m Login rechaza credenciales inválidas correctamente (HTTP 400)
+[0;32m[✓ PASS][0m Sistema protegido contra inyección SQL básica (HTTP 400)
+[0;34m[2025-11-04 05:59:44][0m 📝 3. PRUEBAS DE VALIDACIÓN DE ENTRADA
+[0;34m[2025-11-04 05:59:44][0m 3.1 Probando XSS en registro de usuario...
+[0;32m[✓ PASS][0m Sistema filtra correctamente scripts XSS
+[0;34m[2025-11-04 05:59:45][0m 3.2 Probando campos excesivamente largos...
+[0;32m[✓ PASS][0m Sistema rechaza campos excesivamente largos (HTTP 400)
+[0;34m[2025-11-04 05:59:46][0m 3.3 Probando caracteres especiales maliciosos...
+[0;32m[✓ PASS][0m Sistema maneja correctamente caracteres especiales
+[0;34m[2025-11-04 05:59:47][0m ⚡ 4. PRUEBAS DE RATE LIMITING
+[0;34m[2025-11-04 05:59:47][0m 4.1 Probando múltiples intentos de login (DoS básico)...
+[1;33m[⚠ WARNING][0m No se detectó rate limiting - considerar implementar
+[0;34m[2025-11-04 05:59:55][0m ⚙️ 5. PRUEBAS DE CONFIGURACIÓN DE SEGURIDAD
+[0;34m[2025-11-04 05:59:55][0m 5.1 Verificando headers de seguridad...
+[0;32m[✓ PASS][0m Header de seguridad presente: X-Frame-Options
+[0;32m[✓ PASS][0m Header de seguridad presente: X-Content-Type-Options
+[0;32m[✓ PASS][0m Header de seguridad presente: X-XSS-Protection
+[1;33m[⚠ WARNING][0m Header de seguridad faltante: Strict-Transport-Security
+[0;34m[2025-11-04 05:59:57][0m 5.2 Verificando exposición de información sensible...
+[0;32m[✓ PASS][0m No se detectó información sensible en endpoints de salud
+[0;34m[2025-11-04 05:59:57][0m 5.3 Probando métodos HTTP no estándar...
+[1;33m[⚠ WARNING][0m Método TRACE permitido - revisar configuración (HTTP 400)
+[0;32m[✓ PASS][0m Método OPTIONS correctamente restringido (HTTP 404)
+[0;32m[✓ PASS][0m Método PUT correctamente restringido (HTTP 404)
+[0;32m[✓ PASS][0m Método DELETE correctamente restringido (HTTP 404)
+[0;34m[2025-11-04 06:00:00][0m 📱 6. PRUEBAS ESPECÍFICAS DE UNIWAY
+[0;34m[2025-11-04 06:00:00][0m 6.1 Verificando acceso a recomendaciones de profesores...
+[0;32m[✓ PASS][0m Recomendaciones accesibles públicamente (diseño intencional)
+[0;34m[2025-11-04 06:00:02][0m 6.2 Probando creación de posts con contenido malicioso...
+[0;31m[✗ FAIL][0m VULNERABILIDAD: XSS en contenido de posts
+[0;34m[2025-11-04 06:00:04][0m 7.1 Probando enumeración de usuarios...
+[1;33m[⚠ WARNING][0m Test de aislamiento de datos requiere tokens válidos - implementar en pruebas manuales
