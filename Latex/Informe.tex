@@ -1,0 +1,450 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+
+\definecolor{uniwayblue}{HTML}{17365D}
+\definecolor{tableblue}{HTML}{D9EAF7}
+\definecolor{lightgray}{HTML}{F2F6FA}
+\hypersetup{colorlinks=true,linkcolor=uniwayblue,urlcolor=uniwayblue}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\textcolor{gray}{UNIWAY \textbar{} PLAN DE PRUEBAS}}
+\rfoot{\small TP-UNIWAY-001 \textbar{} Versión 2.0 \textbar{} Página \thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\titleformat{\section}{\Large\bfseries\color{black}}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.6em}{}
+\setlist[itemize]{leftmargin=1.5em,itemsep=3pt,topsep=3pt}
+\renewcommand{\arraystretch}{1.2}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcommand{\thead}[1]{\textcolor{white}{\textbf{#1}}}
+\newcommand{\risk}[1]{\textbf{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{2.5cm}
+  {\Huge\bfseries Plan de Pruebas de UniWay\par}
+  \vspace{0.4cm}
+  {\Large Conforme con ISO IEC IEEE 29119-3 con adaptación documentada\par}
+  \vspace{1.7cm}
+  \begin{tabularx}{0.88\textwidth}{>{\bfseries}p{4.1cm}Y}
+    \rowcolor{uniwayblue}\thead{Documento} & \thead{Valor}\\
+    \midrule
+    Identificador & TP-UNIWAY-001\\
+    Versión & 2.0\\
+    Estado & Propuesto para aprobación\\
+    Fecha de emisión & 10 de noviembre de 2026\\
+    Organización emisora & Proyecto UniWay -- Institución Universitaria Pascual Bravo\\
+    Elaborado por & Alejandro Ocampo, Kassandra Ariza, Christian Camilo Benitez y Miguel Angel Patiño\\
+    Autoridad de aprobación & Responsable del Proyecto y Líder Técnico\\
+  \end{tabularx}
+  \vfill
+  {\large Aplicación Android \quad $\bullet$ \quad API REST Spring Boot \quad $\bullet$ \quad Base de datos MySQL\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Información específica del documento}
+
+\subsection{Identificador único del documento}
+\textbf{TP-UNIWAY-001} identifica de forma única este plan y sus productos asociados: catálogo de casos, matriz de trazabilidad, hoja de ejecución, registro de incidencias y reporte de cierre.
+
+\subsection{Organización emisora y autores}
+La organización emisora es el Proyecto UniWay de la Institución Universitaria Pascual Bravo. El plan es elaborado por Alejandro Ocampo, Kassandra Ariza, Christian Camilo Benitez y Miguel Angel Patiño.
+
+\subsection{Autoridad de aprobación}
+El Responsable del Proyecto aprueba la aceptación de riesgos residuales y la conclusión de pruebas. El Líder Técnico revisa la cobertura, priorización de riesgos y los cambios al plan antes de su aprobación.
+
+\subsection{Historial de cambios y control de versiones}
+\begin{tabularx}{\textwidth}{p{1.0cm}p{1.65cm}YY}
+\rowcolor{uniwayblue}\thead{Versión} & \thead{Fecha} & \thead{Cambio} & \thead{Responsable}\\
+\midrule
+1.0 & 15/09/2026 & Creación inicial del plan de pruebas. & Alejandro Ocampo\\
+\rowcolor{lightgray}1.1 & 30/09/2026 & Alineación inicial con ISO 29119-3; matriz de riesgos y casos prioritarios. & Kassandra Ariza, Christian Camilo Benitez\\
+2.0 & 10/11/2026 & Reestructuración al esquema actualizado: tailoring explícito, RBT, trazabilidad, estimación y cronograma de tres semanas. & Alejandro Ocampo\\
+\end{tabularx}
+
+\section{Introducción y declaración de adaptación}
+
+\subsection{Alcance del documento}
+Este documento define cómo se probará UniWay, una plataforma estudiantil formada por una aplicación móvil Android, una API REST en Spring Boot y una base de datos MySQL. Cubre autenticación, perfiles, foro, reacciones, comentarios, recomendaciones de docentes, autorización por roles e integración entre los tres componentes.
+
+\subsection{Referencias documentales}
+\begin{tabularx}{\textwidth}{p{5.0cm}Y}
+\rowcolor{uniwayblue}\thead{Referencia} & \thead{Uso en el plan}\\
+\midrule
+ISO/IEC/IEEE 29119-3: Software testing -- Test documentation & Estructura y contenido de los productos documentales de prueba.\\
+\rowcolor{lightgray}ISO/IEC/IEEE 29119-2: Software testing -- Test processes & Referencia para las actividades de diseño, ejecución y control.\\
+README.md e INSTRUCCIONES.md & Arquitectura, módulos, configuración y flujos funcionales de UniWay.\\
+\rowcolor{lightgray}Código fuente \texttt{app/}, \texttt{backend/} y \texttt{database/uniway\_db.sql} & Base técnica para ítems, datos, interfaces, reglas y condiciones de prueba.\\
+Resultados de seguridad disponibles en el repositorio & Evidencia inicial para priorizar controles de JWT, autorización, XSS y configuración.\\
+\rowcolor{lightgray}\texttt{Tests de seguridad/test\_riesgos\_principales.py} & Suite automática de riesgos principales; evidencia repetible para cada sprint y entrega.\\
+\texttt{Tests de seguridad/security\_test.sh} y \texttt{advanced\_security\_test.py} & Scripts históricos de exploración de seguridad y sus resultados; base para retest y mejora de la suite.\\
+\end{tabularx}
+
+\subsection{Conformidad y adaptación Tailoring}
+UniWay aplica una conformidad adaptada con ISO/IEC/IEEE 29119-3. Se conserva el contenido esencial del plan, los riesgos, el diseño de pruebas, los casos, el entorno, la ejecución y el cierre. La adaptación integra algunos documentos separados dentro de artefactos más ligeros para adecuarse a un proyecto académico de tres semanas y a un equipo reducido.
+
+\begin{tabularx}{\textwidth}{p{4.0cm}YY}
+\rowcolor{uniwayblue}\thead{Elemento adaptado} & \thead{Decisión y justificación} & \thead{Riesgo asumido y control}\\
+\midrule
+Política y estrategia organizacional & Se integran en este plan; UniWay no opera una cartera organizacional que justifique documentos independientes. & Riesgo de menor reutilización. Revisión del Líder Técnico en cada hito.\\
+\rowcolor{lightgray}Diseño, casos y procedimientos & Se mantienen en una matriz trazable y en el catálogo de casos, no como tres documentos independientes. & Riesgo de menor granularidad. Cada caso incluye condición, datos, pasos y resultado esperado.\\
+Reportes de preparación y ejecución & Se concentran en checklist de entorno y hoja de ejecución por iteración. & Riesgo de evidencia incompleta. Adjuntar evidencia, fecha, ejecutor y resultado.\\
+\rowcolor{lightgray}Carga masiva y compatibilidad exhaustiva & Se excluyen por plazo, infraestructura y matriz limitada de dispositivos. & Riesgo P2 aceptado. Reevaluar antes de producción.\\
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Decisión de adaptación.} Los riesgos críticos y altos no se excluyen: se reducen mediante pruebas P1 y no se cierran con fallos abiertos sin aprobación expresa del Responsable del Proyecto.
+
+\subsubsection{Elementos no negociables}
+La adaptación no autoriza eliminar los controles que permiten tomar una decisión informada de calidad. Se deben conservar la matriz de riesgos, los casos P1 y P2 trazables, la evidencia de ejecución, el registro de incidencias, los criterios de entrada y salida, los retests y un informe breve de cierre. En particular, las pruebas de autenticación, autorización y protección de datos no se excluyen.
+
+\subsubsection{Límites de la exclusión}
+Las pruebas de carga masiva, certificación completa de accesibilidad y compatibilidad exhaustiva de dispositivos se posponen por el alcance académico. No se consideran pruebas olvidadas: se registran como riesgos aceptados, se revisan al cierre del ciclo y deben volver a planificarse antes de un despliegue productivo.
+
+\subsection{Glosario}
+\begin{tabularx}{\textwidth}{p{2.2cm}Y}
+\rowcolor{uniwayblue}\thead{Término} & \thead{Definición}\\
+\midrule
+API & Interfaz REST entre la aplicación Android y el backend.\\
+\rowcolor{lightgray}JWT & Token firmado usado para autenticar y autorizar la sesión.\\
+RBT & Pruebas basadas en riesgos; la prioridad depende de probabilidad e impacto.\\
+\rowcolor{lightgray}P1, P2, P3 & Prioridad de prueba: P1 crítica, P2 alta o media y P3 baja.\\
+Condición de prueba & Aspecto verificable derivado de un riesgo, requisito o regla de negocio.\\
+\rowcolor{lightgray}Retest & Reejecución de un caso fallido tras corregir una incidencia.\\
+\end{tabularx}
+
+\section{Contexto de las pruebas}
+
+\subsection{Elementos de prueba Test items}
+\begin{tabularx}{\textwidth}{p{1.0cm}p{2.0cm}Y}
+\rowcolor{uniwayblue}\thead{ID} & \thead{Elemento} & \thead{Componentes y foco de prueba}\\
+\midrule
+IT-01 & Aplicación Android & Activities, Fragments, ViewModels, navegación, validaciones de interfaz, Retrofit y preferencias locales.\\
+\rowcolor{lightgray}IT-02 & API REST & Controladores, servicios, validaciones, autenticación JWT, autorización y tratamiento de errores.\\
+IT-03 & Persistencia & Entidades JPA, repositorios, esquema MySQL, restricciones de datos y consistencia de contadores.\\
+\rowcolor{lightgray}IT-04 & Integración & Flujos end-to-end Android -- API REST -- MySQL, comunicación de red y manejo de fallos.\\
+\end{tabularx}
+
+\subsection{Alcance y exclusiones de las pruebas}
+Se incluyen registro y verificación, inicio y recuperación de sesión, perfil, publicaciones, comentarios, reacciones, recomendaciones docentes, ratings, roles de Estudiante y Administración, e integración de componentes. Se excluyen pruebas de carga a gran escala, certificación de accesibilidad WCAG, auditoría externa de infraestructura y una matriz exhaustiva de dispositivos Android.
+
+\subsection{Suposiciones y restricciones}
+\begin{tabularx}{\textwidth}{p{5.0cm}Y}
+\rowcolor{uniwayblue}\thead{Suposición o restricción} & \thead{Impacto en la prueba}\\
+\midrule
+Ciclo de tres semanas & Se prioriza cobertura P1; P2 se ejecuta según capacidad y P3 queda sujeto a disponibilidad.\\
+\rowcolor{lightgray}Entorno local de Android, Spring Boot y MySQL & La evidencia representa el entorno de pruebas, no un entorno productivo sometido a carga real.\\
+Correo SMTP simulado & Verificación y recuperación se validan funcionalmente sin depender de un proveedor externo.\\
+\rowcolor{lightgray}Datos sintéticos y base aislada & No se emplean datos personales reales; la base se reinicializa antes de los ciclos críticos.\\
+\end{tabularx}
+
+\subsection{Partes interesadas}
+\begin{tabularx}{\textwidth}{p{4.5cm}Y}
+\rowcolor{uniwayblue}\thead{Parte interesada} & \thead{Interés y responsabilidad}\\
+\midrule
+Responsable de Pruebas & Diseñar, ejecutar, registrar resultados y comunicar bloqueos.\\
+\rowcolor{lightgray}Desarrollador Android & Corregir defectos de interfaz, navegación e integración móvil.\\
+Desarrollador Backend & Corregir defectos de API, lógica, permisos y persistencia.\\
+\rowcolor{lightgray}Líder Técnico & Priorizar riesgos, revisar cobertura y aprobar adaptaciones.\\
+Responsable del Proyecto & Aceptar el cierre y decidir sobre riesgos residuales.\\
+\end{tabularx}
+
+\section{Gestión de riesgos y matriz de exposición}
+
+\subsection{Identificación de riesgos}
+Los riesgos se identificaron a partir de la arquitectura, los flujos principales, las reglas de autorización y la evidencia de seguridad disponible. Se distinguen riesgos de producto, relacionados con el software, y riesgos de proyecto o entorno, relacionados con el plazo y la infraestructura.
+
+\subsection{Matriz de análisis de riesgos}
+La exposición se determina como \textbf{Probabilidad $\times$ Impacto}. Los niveles P1 y P2 gobiernan la prioridad de prueba. Una exposición P1 exige mitigación mediante pruebas antes del cierre; P2 exige pruebas específicas o aceptación documentada; P3 puede aceptarse con seguimiento.
+
+\begin{center}
+\begin{tabular}{lccc}
+\rowcolor{uniwayblue}\thead{Probabilidad / Impacto} & \thead{Crítico} & \thead{Alto} & \thead{Medio}\\
+\midrule
+Alta & P1 Muy alta & P1 Alta & P2 Media\\
+\rowcolor{lightgray}Media & P1 Alta & P2 Media & P2 Media\\
+Baja & P2 Media & P2 Media & P3 Baja\\
+\end{tabular}
+\end{center}
+
+\subsection{Tratamiento y mitigación}
+\footnotesize
+\begin{longtable}{p{0.8cm}p{4.5cm}p{0.8cm}p{0.9cm}p{0.7cm}p{5.0cm}}
+\rowcolor{uniwayblue}\thead{ID} & \thead{Riesgo} & \thead{Prob.} & \thead{Impacto} & \thead{Exp.} & \thead{Tratamiento y condición de prueba}\\
+\endfirsthead
+\rowcolor{uniwayblue}\thead{ID} & \thead{Riesgo} & \thead{Prob.} & \thead{Impacto} & \thead{Exp.} & \thead{Tratamiento y condición de prueba}\\
+\endhead
+R-01 & Acceso a funciones protegidas con token omitido, vencido o alterado. & Alta & Crítico & P1 & Reducir: comprobar 401/403 y denegación efectiva en rutas sensibles.\\
+\rowcolor{lightgray}R-02 & Suplantación mediante \texttt{userId} enviado por el cliente. & Alta & Crítico & P1 & Reducir: validar que la identidad se derive del JWT y rechazar discrepancias.\\
+R-03 & Edición o eliminación de contenido ajeno. & Media & Alto & P1 & Reducir: probar autor, no autor y Administración en posts, comentarios y recomendaciones.\\
+\rowcolor{lightgray}R-04 & Inconsistencia de likes, dislikes o contadores. & Media & Alto & P1 & Reducir: ejecutar transiciones toggle y verificar persistencia.\\
+R-05 & Registro, verificación o recuperación de contraseña fallida. & Media & Alto & P1 & Reducir: validar correo institucional, códigos inválidos o vencidos y expiración.\\
+\rowcolor{lightgray}R-06 & Exposición de credenciales, tokens o datos sensibles. & Media & Alto & P1 & Reducir: inspeccionar API, logs y configuración de seguridad.\\
+R-07 & Falla de comunicación Android -- API -- MySQL. & Media & Medio & P2 & Reducir: simular indisponibilidad, error de red y respuesta malformada.\\
+\rowcolor{lightgray}R-08 & Rating de docentes fuera de 1 a 5. & Media & Medio & P2 & Reducir: probar 0, 1, 5 y 6 en API y persistencia.\\
+R-09 & Fallas en recuperación de contraseña y expiración de tokens de recuperación. & Media & Alto & P1 & Reducir: probar solicitud de recuperación con correo institucional, uso de tokens vencidos e ingreso de nuevas claves.\\
+\rowcolor{lightgray}R-PRJ-01 & Contaminación de datos de prueba con datos reales o persistencia corrupta entre ciclos. & Baja & Medio & P2 & Reducir: usar una base exclusiva para pruebas, con scripts de inicialización y limpieza antes de cada iteración.\\
+R-PRJ-02 & Indisponibilidad o fallas del servicio SMTP para verificación y recuperación. & Media & Alto & P1 & Reducir: implementar y validar un servidor SMTP simulado en el entorno local.\\
+\rowcolor{lightgray}R-PRJ-03 & Capacidad y tiempo acotados del equipo de pruebas en iteraciones cortas. & Alta & Medio & P2 & Reducir: focalizar el 100\% de la ejecución en P1 y automatizar la regresión crítica.\\
+R-PRJ-04 & Modificaciones inesperadas de código o endpoints durante la iteración de pruebas. & Media & Medio & P2 & Reducir: establecer una ventana de congelamiento de código antes del inicio formal de pruebas.\\
+\rowcolor{lightgray}R-PRJ-05 & Degradación del rendimiento por omitir pruebas de carga a gran escala. & Alta & Medio & P2 & Aceptar: riesgo justificado por el alcance académico; reevaluar si se despliega a producción.\\
+R-PRJ-06 & Incompatibilidad en dispositivos Android no probados por matriz de hardware limitada. & Alta & Medio & P2 & Aceptar: pruebas acotadas a emuladores con Android API 24 o superior.\\
+\end{longtable}
+\normalsize
+
+\noindent\textbf{Criterio de tratamiento.} La evidencia histórica de seguridad es una señal de priorización, no una certificación de ausencia de vulnerabilidades. Cualquier observación relacionada con JWT, XSS, rate limiting, trazas o exposición de API debe abrir una incidencia y requerir retest P1.
+
+\subsubsection{Prioridad de seguridad en el build actual}
+La configuración actual del backend permite todas las solicitudes durante desarrollo. Por ello, hasta que se valide y aplique la protección efectiva de rutas, los controles de autenticación y autorización se tratan como riesgo crítico: ninguna funcionalidad que modifique datos debe considerarse aprobada solo porque la aplicación cliente envía un token. La autorización debe comprobarse en el backend y derivar la identidad del JWT, no de un identificador enviado por el cliente.
+
+\section{Estrategia de pruebas y derivación de casos}
+
+\subsection{Derivación de condiciones de prueba}
+Cada riesgo P1 o P2 se traduce en una condición verificable. Por ejemplo, R-01 origina la condición de que toda ruta protegida rechace tokens ausentes, vencidos o manipulados; R-03 exige que solo el autor o el rol autorizado modifiquen recursos; R-04 exige que cada usuario tenga una única reacción vigente por publicación o recomendación.
+
+\subsection{Técnicas de diseño de pruebas}
+\begin{tabularx}{\textwidth}{p{3.0cm}Y}
+\rowcolor{uniwayblue}\thead{Técnica} & \thead{Aplicación en UniWay}\\
+\midrule
+Partición de equivalencia & Correos institucionales y externos; contraseñas válidas e inválidas; roles autorizados y no autorizados.\\
+\rowcolor{lightgray}Valores límite & Ratings 0, 1, 5 y 6; campos obligatorios vacíos, longitudes máximas y entradas excesivas.\\
+Tabla de decisión & Permisos de editar y eliminar según Autor, No Autor y Administración.\\
+\rowcolor{lightgray}Transición de estados & Secuencia Sin reacción $\rightarrow$ Like $\rightarrow$ Dislike $\rightarrow$ Sin reacción.\\
+Pruebas negativas & JWT inexistente, expirado o alterado; \texttt{userId} manipulado; recurso inexistente y datos maliciosos.\\
+\rowcolor{lightgray}Regresión & Reejecución de P1 y de los casos afectados después de cada corrección.\\
+Pruebas de contrato e integración & Verificación de códigos HTTP, estructura de solicitudes y respuestas, persistencia y comportamiento Android -- API -- MySQL.\\
+\rowcolor{lightgray}Pruebas exploratorias acotadas & Sesiones breves sobre foro, comentarios y recomendaciones para descubrir flujos no previstos; los hallazgos se convierten en casos regresivos.\\
+\end{tabularx}
+
+\subsection{Pruebas automatizadas de riesgos principales}
+La automatización complementa, pero no reemplaza, las pruebas funcionales y exploratorias. La suite \texttt{Tests de seguridad/test\_riesgos\_principales.py} se ejecutará contra un entorno local o de pruebas con datos sintéticos antes de cada entrega. No requiere dependencias externas y genera resultados verificables por cada caso.
+
+\begin{tabularx}{\textwidth}{p{2.2cm}p{7.0cm}Y}
+\rowcolor{uniwayblue}\thead{Riesgo} & \thead{Prueba automática} & \thead{Criterio de aprobación}\\
+\midrule
+R-01 & Perfil sin token y con JWT malformado; listado de usuarios público. & Las rutas protegidas responden 401 o 403 y no devuelven datos.\\
+\rowcolor{lightgray}R-02 y R-03 & Edición de post o comentario ajeno con identificador de usuario manipulado. & En una base aislada, el no autor recibe 401 o 403 y el recurso no cambia.\\
+R-05 y R-09 & Registro y recuperación con correo no institucional. & La API rechaza la solicitud con 400 o 422 y no inicia el flujo.\\
+\rowcolor{lightgray}R-06 & Inicio de sesión inválido, listado de usuarios y endpoint de hash de desarrollo. & No se exponen tokens, secretos, trazas ni endpoints de desarrollo al público.\\
+R-08 & Creación de recomendación con rating fuera de rango. & La API o la base de datos rechaza 0 o 6 sin persistir datos inconsistentes.\\
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Control de ejecución.} Las pruebas que modifican datos se mantienen desactivadas por defecto. Solo pueden habilitarse con \texttt{UNIWAY\_ENABLE\_MUTATION\_TESTS=1}, dos tokens de prueba y recursos desechables en una base aislada. Si la suite detecta una ruta pública o una autorización insuficiente, el resultado se registra como incidencia P1, no como fallo de la prueba.
+
+\subsection{Evidencia histórica de pruebas de seguridad}
+El repositorio conserva dos scripts ejecutados el 4 de noviembre de 2025 contra el entorno de pruebas \texttt{http://192.168.1.4:8080}. Esta evidencia orienta la priorización actual, pero no certifica el estado del build actual: los resultados deben repetirse en el entorno controlado de cada sprint, con datos sintéticos y versiones identificadas.
+
+\begin{longtable}{p{5.0cm}p{5.0cm}p{5.0cm}}
+\rowcolor{uniwayblue}\thead{Script y resultado} & \thead{Cobertura documentada} & \thead{Uso dentro del plan}\\
+\endfirsthead
+\rowcolor{uniwayblue}\thead{Script y resultado} & \thead{Cobertura documentada} & \thead{Uso dentro del plan}\\
+\endhead
+\texttt{security\_test.sh} y \texttt{security\_test\_results.txt} & Conectividad, autenticación sin credenciales, login inválido, inyección SQL básica, XSS en registro y posts, campos extensos, caracteres especiales, rate limiting, cabeceras, métodos HTTP, recomendaciones públicas y privacidad básica. & Alimenta los riesgos R-01, R-05, R-06 y R-09; los casos de XSS y autorización se ejecutan como P1.\\
+\rowcolor{lightgray}\texttt{advanced\_security\_test.py} y \texttt{advanced\_security\_results.txt} & JWT con algoritmo \emph{none}, simulación de secretos débiles, diferencia de tiempos en login, payloads SQL y XSS, CSRF, concurrencia para rate limiting y divulgación de información en endpoints sensibles. & Amplía la cobertura de R-01 y R-06. Sus pruebas de concurrencia y divulgación se mantienen como controles periódicos de seguridad.\\
+\end{longtable}
+
+\subsubsection{Hallazgos que requieren retest y tratamiento}
+\begin{longtable}{p{5.0cm}p{5.0cm}p{4.55cm}}
+\rowcolor{uniwayblue}\thead{Resultado histórico} & \thead{Clasificación en este plan} & \thead{Acción requerida}\\
+\endfirsthead
+\rowcolor{uniwayblue}\thead{Resultado histórico} & \thead{Clasificación en este plan} & \thead{Acción requerida}\\
+\endhead
+El script avanzado reportó aceptación de un JWT con algoritmo \emph{none}. & Hallazgo crítico asociado a R-01 mientras no exista retest satisfactorio. & Validar firma, algoritmo permitido, expiración y autorización de rutas. Ejecutar CP-AUT-06 y una prueba automática de JWT alterado antes de aprobar el build.\\
+\rowcolor{lightgray}El script básico reportó XSS en contenido de posts. & Hallazgo P1 asociado a R-06; la evidencia de registro que filtró XSS no cubre automáticamente los posts. & Retestar creación, edición, visualización y almacenamiento de posts y comentarios con payloads seguros de prueba. Corregir validación o codificación de salida según corresponda.\\
+No se detectó rate limiting en las ejecuciones básica y avanzada. & Riesgo de seguridad y disponibilidad; P2 mientras el alcance académico no requiera un servicio público, P1 antes de producción. & Definir umbral por endpoint de login, comprobar respuesta 429 y repetir una prueba de ráfaga controlada.\\
+\rowcolor{lightgray}El script avanzado reportó información sensible en \texttt{/api-docs}; Swagger fue accesible sin contenido crítico declarado. & Hallazgo P1 de divulgación asociado a R-06 hasta verificar la exposición actual. & Restringir o deshabilitar documentación y endpoints de administración fuera de desarrollo; repetir inspección de respuestas sin credenciales.\\
+Faltó la cabecera HSTS en la ejecución básica. & Observación de configuración para producción. & Configurar HTTPS y HSTS únicamente en el entorno productivo; verificar la cabecera en el dominio HTTPS, no en el servidor local HTTP.\\
+\end{longtable}
+
+\subsubsection{Limitaciones de la evidencia histórica}
+Los scripts son exploratorios y algunos resultados requieren interpretación. Una respuesta HTTP 400 en lugar de 401/403 no demuestra por sí sola acceso autorizado; debe verificarse si se devolvieron datos o se efectuó una operación. De forma similar, la simulación de secretos JWT débiles no prueba que el secreto desplegado sea débil, y una respuesta de CSRF o TRACE distinta de 401/403/405 debe clasificarse como inconclusa hasta inspeccionar el comportamiento. Las pruebas que crean posts o envían cargas deben realizarse solo con cuentas y datos desechables, y dejar evidencia de limpieza.
+
+\subsection{Generación de casos de prueba y trazabilidad}
+\footnotesize
+\begin{longtable}{p{1.0cm}p{3.6cm}p{3.0cm}p{5.0cm}}
+\rowcolor{uniwayblue}\thead{Riesgo} & \thead{Condición de prueba} & \thead{Caso principal} & \thead{Resultado esperado}\\
+\endfirsthead
+\rowcolor{uniwayblue}\thead{Riesgo} & \thead{Condición de prueba} & \thead{Caso principal} & \thead{Resultado esperado}\\
+\endhead
+R-01 & Validar rutas protegidas ante tokens no válidos. & CP-AUT-06 & La API responde 401/403 y no ejecuta la operación.\\
+\rowcolor{lightgray}R-02 & Impedir que el \texttt{userId} del cliente suplante al JWT. & CP-SEC-01 & La identidad efectiva procede del JWT y se rechaza la discrepancia.\\
+R-03 & Aplicar permisos por autoría y rol. & CP-POS-03, CP-COM-02, CP-REC-03 & El no autor es denegado; Administración opera según la regla.\\
+\rowcolor{lightgray}R-04 & Mantener una sola reacción y contadores correctos. & CP-REA-01 a CP-REA-03 & La transición toggle ajusta datos y contadores sin duplicados.\\
+R-05 & Controlar registro, verificación y recuperación. & CP-AUT-01 a CP-AUT-03, CP-AUT-07 & Solo se activan flujos con correo y códigos válidos.\\
+\rowcolor{lightgray}R-06 & No revelar datos sensibles. & CP-SEC-02 & No se exponen secretos o tokens en respuestas, logs o configuración.\\
+R-07 & Manejar falla de integración. & CP-INT-01 & La app informa el error y no termina inesperadamente.\\
+\rowcolor{lightgray}R-08 & Restringir el rating a 1..5. & CP-REC-02 & API o base de datos rechaza 0 y 6 sin persistirlos.\\
+\end{longtable}
+\normalsize
+
+\subsubsection{Catálogo completo de casos de prueba prioritarios}
+La siguiente tabla conserva el catálogo completo de casos priorizados del plan inicial. Cada caso se vincula con el riesgo que mitiga y debe registrar en la hoja de ejecución el build, fecha, ejecutor, resultado y evidencia.
+
+\footnotesize
+\begin{longtable}{p{1.25cm}p{2.5cm}p{3.55cm}p{4.35cm}p{0.7cm}p{0.95cm}}
+\rowcolor{uniwayblue}\thead{ID} & \thead{Módulo} & \thead{Escenario de prueba} & \thead{Resultado esperado} & \thead{Prior.} & \thead{Riesgo}\\
+\endfirsthead
+\rowcolor{uniwayblue}\thead{ID} & \thead{Módulo} & \thead{Escenario de prueba} & \thead{Resultado esperado} & \thead{Prior.} & \thead{Riesgo}\\
+\endhead
+CP-AUT-01 & Registro & Registrar usuario con correo institucional válido. & Se envía código de verificación y no se crea la cuenta definitiva hasta la confirmación. & P1 & R-05\\
+\rowcolor{lightgray}CP-AUT-02 & Registro & Intentar registro con correo no institucional. & La API rechaza la solicitud con mensaje descriptivo de error. & P1 & R-05\\
+CP-AUT-03 & Registro & Completar registro con código de verificación inválido o vencido. & Se rechaza la confirmación y no se activa la cuenta. & P1 & R-05\\
+\rowcolor{lightgray}CP-AUT-04 & Login & Iniciar sesión con credenciales válidas. & Se retorna token JWT válido y se redirecciona a la pantalla principal. & P1 & R-01\\
+CP-AUT-05 & Login & Iniciar sesión con contraseña incorrecta. & Se deniega el acceso sin revelar información sensible sobre la existencia del usuario. & P1 & R-06\\
+\rowcolor{lightgray}CP-AUT-06 & Sesión & Acceder a rutas protegidas con token vencido, alterado u omitido. & El backend responde 401/403 e impide la ejecución. & P1 & R-01\\
+CP-AUT-07 & Autenticación & Recuperación de contraseña con código o token vencido o inválido. & El sistema deniega el cambio de clave y no modifica las credenciales almacenadas. & P1 & R-09\\
+\rowcolor{lightgray}CP-SEC-01 & Autorización & Enviar un \texttt{userId} distinto al usuario autenticado en el JWT. & El backend valida desde el JWT y rechaza la discrepancia. & P1 & R-02\\
+CP-POS-01 & Foro & Crear publicación autenticada correctamente. & La publicación se persiste asociada al ID del usuario autenticado. & P1 & R-03\\
+\rowcolor{lightgray}CP-POS-02 & Foro & Editar publicación propia. & Se actualiza el título o contenido de la publicación en la base de datos. & P1 & R-03\\
+CP-POS-03 & Foro & Intentar editar una publicación de otro estudiante. & La API rechaza la solicitud por falta de permisos (403). & P1 & R-03\\
+\rowcolor{lightgray}CP-POS-04 & Foro & Administración elimina una publicación ajena. & La operación se ejecuta y queda registrada en logs de auditoría. & P1 & R-03\\
+CP-REA-01 & Reacciones & Registrar Like sobre una publicación sin reacción previa. & Se registra la reacción y el contador de likes aumenta en uno. & P1 & R-04\\
+\rowcolor{lightgray}CP-REA-02 & Reacciones & Repetir Like sobre una publicación que ya posee Like. & Se remueve la reacción (toggle) y el contador disminuye en uno. & P1 & R-04\\
+CP-REA-03 & Reacciones & Cambiar una reacción de Dislike a Like. & Se reemplaza la reacción, se conserva un único registro y se ajustan ambos contadores. & P1 & R-04\\
+\rowcolor{lightgray}CP-COM-01 & Comentarios & Crear comentario válido en una publicación. & El comentario se persiste y el contador de comentarios del post se actualiza. & P1 & R-03\\
+CP-COM-02 & Comentarios & Intentar editar o eliminar comentario ajeno como Estudiante. & La operación es denegada por el backend. & P1 & R-03\\
+\rowcolor{lightgray}CP-REC-01 & Recomendaciones & Crear recomendación con calificación válida entre 1 y 5. & Se persiste la recomendación y se recalcula el promedio del docente. & P1 & R-08\\
+CP-REC-02 & Recomendaciones & Intentar crear recomendación con rating 0 o 6. & La API o la base de datos rechaza la petición sin guardar datos inconsistentes. & P2 & R-08\\
+\rowcolor{lightgray}CP-REC-03 & Recomendaciones & Eliminar recomendación propia, ajena y con rol de Administración. & Solo el autor o el administrador pueden efectuar la eliminación. & P1 & R-03\\
+CP-INT-01 & Integración & Simular indisponibilidad o falla del backend desde la app Android. & La app detecta el fallo y muestra un mensaje amigable sin cerrarse abruptamente. & P2 & R-07\\
+\rowcolor{lightgray}CP-SEC-02 & Seguridad & Inspeccionar respuestas de API, logs del servidor y configuración de build. & No se exponen contraseñas en texto claro, tokens en logs ni credenciales en respuestas. & P1 & R-06\\
+\end{longtable}
+\normalsize
+
+\subsection{Pruebas complementarias no automáticas}
+Las siguientes pruebas se ejecutan de forma manual, guiada o semiguiada porque evalúan aspectos que una solicitud automática no observa completamente. Los hallazgos reproducibles de estas actividades deben convertirse en nuevos casos de regresión.
+
+\begin{longtable}{p{3.0cm}p{7.0cm}p{5.0cm}}
+\rowcolor{uniwayblue}\thead{Tipo de prueba} & \thead{Objetivo y aplicación en UniWay} & \thead{Evidencia y prioridad}\\
+\endfirsthead
+\rowcolor{uniwayblue}\thead{Tipo de prueba} & \thead{Objetivo y aplicación en UniWay} & \thead{Evidencia y prioridad}\\
+\endhead
+Funcional manual end-to-end & Recorrer desde Android los flujos completos de registro, verificación, inicio de sesión, perfil, foro, comentarios y recomendaciones hasta comprobar la persistencia en la API y MySQL. & Capturas, resultado por caso y datos usados. P1 para autenticación, permisos y creación de contenido.\\
+\rowcolor{lightgray}Exploratoria & Realizar sesiones breves sobre foro y recomendaciones: navegación atrás, pulsaciones repetidas, campos incompletos, cambios rápidos de pantalla y estados inesperados. & Bitácora de sesión y defectos encontrados. Los defectos confirmados se convierten en pruebas regresivas.\\
+Usabilidad & Pedir a un estudiante y a un administrador completar tareas sin instrucciones: publicar, encontrar recomendaciones y recuperar contraseña. & Observaciones, tiempo de tarea y puntos de confusión. P2.\\
+\rowcolor{lightgray}Interfaz visual & Revisar textos, contraste, mensajes de error, tamaños, pantallas pequeñas y grandes, y orientación. & Capturas por dispositivo o emulador. P2; los defectos que bloqueen una tarea pasan a P1.\\
+Compatibilidad dirigida & Repetir los casos P1 en al menos dos versiones Android y en un emulador más un dispositivo físico. & Matriz de dispositivo, versión Android y resultado. P2. No sustituye una certificación exhaustiva.\\
+\rowcolor{lightgray}Conectividad y resiliencia & Simular backend no disponible, red lenta, pérdida de internet y respuestas inválidas. & Video o captura y registro de la respuesta de la app. P1 para cierres inesperados o pérdida de datos.\\
+Seguridad manual & Intentar acceder o modificar perfiles, posts, comentarios y recomendaciones de otros usuarios con los roles Autor, No Autor y Administración. & Tabla de decisión de permisos, código HTTP y evidencia. P1.\\
+\rowcolor{lightgray}Integridad de datos & Revisar en MySQL que no existan reacciones duplicadas, que los contadores coincidan y que comentarios, posts y ratings mantengan sus relaciones y restricciones. & Consulta, resultado y evidencia de base de datos. P1 para inconsistencia de datos.\\
+Recuperación & Verificar códigos vencidos, token expirado, cierre y reapertura de la app, y recuperación después de una interrupción de red. & Resultado de los escenarios y evidencia. P1 para acceso o recuperación de cuenta.\\
+\rowcolor{lightgray}Aceptación & Al cierre del sprint, una persona que represente a Estudiante o Administración valida los flujos comprometidos y los criterios acordados. & Acta breve de aceptación, observaciones y decisión. P1 para criterios de negocio comprometidos.\\
+\end{longtable}
+
+\subsection{Ejecución ágil y controles no negociables}
+Las pruebas se realizan de forma continua durante cada sprint. La selección de trabajo comienza por la exposición al riesgo y no por el orden de implementación de pantallas. Los resultados se registran en la hoja de ejecución y se revisan con desarrollo al menos una vez por semana.
+
+\begin{tabularx}{\textwidth}{p{3.0cm}Y}
+\rowcolor{uniwayblue}\thead{Momento del sprint} & \thead{Actividad obligatoria}\\
+\midrule
+Planificación & Actualizar riesgos por cambios de historias, endpoints o modelo de datos; seleccionar P1 y P2 comprometidos para el sprint.\\
+\rowcolor{lightgray}Antes de probar & Ejecutar checklist de entorno, identificar el build y cargar datos sintéticos.\\
+Durante la ejecución & Ejecutar primero la suite P1: JWT, autorización, identidad, publicación, comentario, reacciones y recomendaciones. Después ejecutar P2 según capacidad.\\
+\rowcolor{lightgray}Después de una corrección & Realizar retest del caso que detectó la incidencia y regresión de los P1 afectados.\\
+Cierre del sprint & Consolidar evidencia, incidencias abiertas, cobertura, riesgos residuales y decisión de continuar, aceptar o aplazar.\\
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Suite mínima P1.} Debe cubrir: token ausente, vencido y alterado; suplantación mediante \texttt{userId}; permisos de Autor, No Autor y Administración; transiciones Like/Dislike; registro y códigos inválidos; recuperación de contraseña; exposición de secretos; y creación o edición de contenido con entradas maliciosas.
+
+\subsection{Requisitos de entorno y datos de prueba}
+\begin{tabularx}{\textwidth}{p{2.4cm}Y}
+\rowcolor{uniwayblue}\thead{Componente} & \thead{Requisito}\\
+\midrule
+Móvil & Emulador Android Studio o dispositivo con Android API 24 o superior; APK debug o ejecución desde Android Studio.\\
+\rowcolor{lightgray}Backend & Spring Boot disponible localmente en el puerto 8080, con configuración de prueba.\\
+Persistencia & MySQL con esquema \texttt{uniway\_db} y datos reinicializables para el ciclo de prueba.\\
+\rowcolor{lightgray}Conectividad & \texttt{10.0.2.2} desde emulador hacia localhost; Postman o Insomnia para API; MailHog o SMTP simulado.\\
+Datos & Estudiante autor, estudiante no autor, Administración, usuario no verificado, posts, comentarios, recomendación y JWT válidos, vencidos y alterados.\\
+\end{tabularx}
+
+\subsection{Criterios de suspensión y finalización}
+\begin{tabularx}{\textwidth}{p{3.0cm}Y}
+\rowcolor{uniwayblue}\thead{Tipo} & \thead{Criterio}\\
+\midrule
+Suspensión & No se ejecuta un caso si backend, MySQL, APK o datos mínimos no están disponibles; si surge un defecto crítico que invalida la ejecución restante; o si no existe trazabilidad del build probado.\\
+\rowcolor{lightgray}Reanudación & Se restablece el entorno, se documenta la versión, se corrige o acepta el bloqueo y se confirma con una prueba de humo.\\
+Finalización & 100\% de P1 ejecutados; cero incidencias críticas o altas abiertas sin aceptación; 100\% de retests; al menos 90\% de P1 y P2 aprobados; reporte de cierre y riesgos residuales revisados.\\
+\end{tabularx}
+
+\section{Actividades de prueba y estimaciones}
+
+\subsection{Desglose de tareas}
+\begin{tabularx}{\textwidth}{p{3.3cm}Y}
+\rowcolor{uniwayblue}\thead{Actividad} & \thead{Resultado}\\
+\midrule
+Preparar entorno y datos & Checklist aprobado, datos sintéticos y build identificable.\\
+\rowcolor{lightgray}Revisar riesgos y condiciones & Matriz RBT actualizada y condiciones priorizadas.\\
+Diseñar y revisar casos & Casos trazables con datos, pasos y resultados esperados.\\
+\rowcolor{lightgray}Ejecutar pruebas P1 y P2 & Hoja de ejecución, evidencias e incidencias registradas.\\
+Retest y regresión & Confirmación de correcciones y regresión P1 afectada.\\
+\rowcolor{lightgray}Comunicar y cerrar & Reporte de estado, riesgos residuales y decisión de cierre.\\
+\end{tabularx}
+
+\subsection{Estimación de esfuerzo por actividad}
+\begin{tabularx}{\textwidth}{p{4.2cm}p{2.2cm}Y}
+\rowcolor{uniwayblue}\thead{Actividad} & \thead{Esfuerzo estimado} & \thead{Dependencia}\\
+\midrule
+Preparación de entorno y datos & 8 horas & Acceso a Android Studio, backend, MySQL y SMTP simulado.\\
+\rowcolor{lightgray}Riesgos, condiciones y casos & 14 horas & Revisión de requisitos, código y matriz RBT.\\
+Ejecución funcional, seguridad e integración & 28 horas & Build estable, datos de prueba y disponibilidad de los roles.\\
+\rowcolor{lightgray}Registro de incidencias, retest y regresión & 16 horas & Correcciones entregadas por desarrollo.\\
+Seguimiento y cierre & 6 horas & Resultados consolidados y aprobación de riesgos.\\
+\rowcolor{lightgray}\textbf{Total planificado} & \textbf{72 horas} & Tres semanas; se ajusta según disponibilidad.\\
+\end{tabularx}
+
+\section{Personal}
+\subsection{Roles y responsabilidades de prueba}
+\begin{tabularx}{\textwidth}{p{2.4cm}p{7.5cm}p{5.3cm}}
+\rowcolor{uniwayblue}\thead{Rol} & \thead{Responsabilidades} & \thead{Entregable o decisión}\\
+\midrule
+Responsable de Pruebas & Planificar, diseñar, ejecutar, registrar evidencias y escalar bloqueos. & Matriz, casos, hoja de ejecución, incidencias y reporte.\\
+\rowcolor{lightgray}Desarrollador Android & Analizar y corregir defectos de cliente móvil; apoyar la reproducción. & Build corregido y evidencia de corrección.\\
+Desarrollador Backend & Corregir API, seguridad, persistencia y reglas de negocio. & Endpoint o build corregido; cambios trazables.\\
+\rowcolor{lightgray}Líder Técnico & Revisar calidad técnica, riesgos, exclusiones y cobertura. & Validación técnica de adaptación y cierre.\\
+Responsable del Proyecto & Aprobar el resultado final y aceptar riesgos residuales cuando corresponda. & Decisión de aprobación o aplazamiento.\\
+\end{tabularx}
+
+\medskip
+La comunicación se realiza mediante el repositorio, issues o tablero de incidencias y una revisión al cierre de cada semana. Todo defecto debe referenciar el caso que lo detectó, el build probado, severidad, pasos de reproducción, evidencia y estado.
+
+\section{Cronograma}
+\subsection{Hitos y fechas de ejecución}
+El cronograma se alinea a un ciclo de tres semanas a partir del 10 de noviembre de 2026. Si cambian la disponibilidad del equipo o la estabilidad del build, se replanifican P2 y P3, sin desplazar la ejecución de P1.
+
+\begin{tabularx}{\textwidth}{p{1.5cm}p{2.2cm}p{2.5cm}Y}
+\rowcolor{uniwayblue}\thead{Semana} & \thead{Fechas} & \thead{Hito} & \thead{Actividades y salida}\\
+\midrule
+1 & 10 al 16 nov. 2026 & Preparación y diseño & Configurar entorno y datos; revisar RBT; derivar condiciones; completar y revisar casos P1/P2.\\
+\rowcolor{lightgray}2 & 17 al 23 nov. 2026 & Ejecución prioritaria & Ejecutar autenticación, autorización, foro, comentarios, reacciones, recomendaciones e integración; abrir incidencias.\\
+3 & 24 al 30 nov. 2026 & Retest y cierre & Verificar correcciones; ejecutar regresión P1; consolidar métricas, riesgos residuales y decisión de cierre.\\
+\end{tabularx}
+
+\subsection{Aprobación}
+\vspace{0.4cm}
+\begin{tabularx}{\textwidth}{p{3.1cm}Yp{4.0cm}}
+\rowcolor{uniwayblue}\thead{Rol} & \thead{Nombre} & \thead{Firma y fecha}\\
+\midrule
+Elaborado por & Alejandro Ocampo, Kassandra Ariza, Christian Camilo Benitez y Miguel Angel Patiño & \rule{3.5cm}{0.4pt}\\[1.1cm]
+\rowcolor{lightgray}Revisado por & Líder Técnico & \rule{3.5cm}{0.4pt}\\[1.1cm]
+Aprobado por & Responsable del Proyecto & \rule{3.5cm}{0.4pt}\\[1.1cm]
+\end{tabularx}
+
+\end{document}
