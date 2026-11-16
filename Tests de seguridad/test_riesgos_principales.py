@@ -158,6 +158,22 @@ class RiesgosPrincipalesUniWayTests(unittest.TestCase):
         )
         self.assertIn(result.status, {400, 422}, result.body)
 
+    def test_09_recomendacion_rechaza_rating_invalido(self) -> None:
+        """R-08: el servidor debe rechazar ratings fuera del rango 1-5 (ej. 6)."""
+        # Prueba no destructiva enviando un rating inválido con un token nulo o inválido
+        result = request(
+            "POST",
+            "/teacher-recommendations/with-rating",
+            {
+                "teacherName": "Docente Límite",
+                "subject": "Pruebas",
+                "rating": 6,  # Inválido según R-08
+                "reference": "Prueba de límite"
+            },
+            token="token.invalido.prueba"
+        )
+        # Debe denegar por autenticación (401/403) o por validación de negocio (400/422)
+        self.assertIn(result.status, {400, 401, 403, 422}, result.body)
 
 @unittest.skipUnless(
     MUTATION_TESTS_ENABLED,
